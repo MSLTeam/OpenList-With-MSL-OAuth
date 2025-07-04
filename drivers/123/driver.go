@@ -6,17 +6,18 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strings"
 	"sync"
 	"time"
 
 	"golang.org/x/time/rate"
 
-	"github.com/OpenListTeam/OpenList/drivers/base"
-	"github.com/OpenListTeam/OpenList/internal/driver"
-	"github.com/OpenListTeam/OpenList/internal/errs"
-	"github.com/OpenListTeam/OpenList/internal/model"
-	"github.com/OpenListTeam/OpenList/internal/stream"
-	"github.com/OpenListTeam/OpenList/pkg/utils"
+	"github.com/OpenListTeam/OpenList/v4/drivers/base"
+	"github.com/OpenListTeam/OpenList/v4/internal/driver"
+	"github.com/OpenListTeam/OpenList/v4/internal/errs"
+	"github.com/OpenListTeam/OpenList/v4/internal/model"
+	"github.com/OpenListTeam/OpenList/v4/internal/stream"
+	"github.com/OpenListTeam/OpenList/v4/pkg/utils"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -195,7 +196,7 @@ func (d *Pan123) Put(ctx context.Context, dstDir model.Obj, file model.FileStrea
 	data := base.Json{
 		"driveId":      0,
 		"duplicate":    2, // 2->覆盖 1->重命名 0->默认
-		"etag":         etag,
+		"etag":         strings.ToLower(etag),
 		"fileName":     file.GetName(),
 		"parentFileId": dstDir.GetID(),
 		"size":         file.GetSize(),

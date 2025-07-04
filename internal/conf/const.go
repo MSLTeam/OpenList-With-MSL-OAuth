@@ -69,6 +69,9 @@ const (
 	// thunder
 	ThunderTempDir = "thunder_temp_dir"
 
+	// thunder_browser
+	ThunderBrowserTempDir = "thunder_browser_temp_dir"
+
 	// single
 	Token         = "token"
 	IndexProgress = "index_progress"
@@ -145,4 +148,5 @@ const (
 // ContextKey is the type of context keys.
 const (
 	NoTaskKey = "no_task"
+	ApiUrlKey = "api_url"
 )
